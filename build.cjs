@@ -15,7 +15,7 @@ const services = [
 const nav = [['home','Home'],['about','About Us'],['products','Our Products'],['services','Our Services'],['markets','Global Markets'],['contact','Contact Us']];
 const body = `<div id="ark-global">
  <header class="ark-wrap ark-header">
-  <a class="ark-logo" href="#ark-home" aria-label="ARK Global home"><img src="assets/logo.png" alt="ARK Global — Connecting Nations through trade." width="375" height="176"></a>
+  <a class="ark-logo" href="#ark-home" aria-label="ARK Global home"><img src="assets/logo.png" alt="ARK Global — Connecting Nations through trade." width="1774" height="887"></a>
   <button class="ark-menu" type="button" aria-expanded="false" aria-controls="ark-navigation">Menu ☰</button>
   <nav id="ark-navigation" aria-label="Main navigation">${nav.map(([id,title])=>`<a href="#ark-${id}">${title}</a>`).join('')}</nav>
   <a class="ark-button" href="#ark-contact">Get a Quote <span aria-hidden="true">›</span></a>
