@@ -15,17 +15,21 @@
     nav.classList.remove('ark-open');
   });
   const descriptions = {
-    pharmaceuticals: ['Pharmaceuticals & Supplements', 'Discuss your pharmaceutical and supplement sourcing requirements with our team. Product availability, documentation and destination requirements are confirmed for each enquiry.'],
-    herbal: ['Herbal & Ayurvedic Products', 'Enquire about herbal and Ayurvedic products. Share your preferred ingredients, format, packaging and destination so we can discuss suitable sourcing options.'],
-    beauty: ['Perfume Oils & Beauty Products', 'Explore sourcing enquiries for perfume oils and beauty products. Tell us your preferred fragrances, product formats, packaging and quantities.'],
-    food: ['Food & Agricultural Products', 'Connect with our team about food and agricultural sourcing. Include the commodity, grade, packaging, quantity and destination in your enquiry.'],
-    fashion: ['Fashion & Clothing', 'Discuss clothing sourcing for your business. Share garment types, materials, sizes, quantities and any packaging requirements.']
+    pharmaceuticals: ['Pharmaceuticals & Supplements', ['Nutraceutical Raw Materials', 'Vitamins & Minerals', 'Dietary Supplement Ingredients', 'Herbal Supplement Ingredients', 'Amino Acids & Protein Ingredients', 'Botanical Extracts', 'Probiotics & Prebiotics']],
+    herbal: ['Herbal & Ayurvedic Products', ['Ashwagandha', 'Shilajit', 'Moringa', 'Holy Basil (Tulsi)', 'Neem', 'Amla', 'Brahmi']],
+    beauty: ['Perfume Oils & Beauty Products', ['Premium Perfume Oils', 'Concentrated Fragrance Oils', 'Essential Oils', 'Natural Aromatic Oils', 'Herbal Hair Oils', 'Natural Cosmetic Oils', 'Botanical Skincare Ingredients']],
+    food: ['Food & Agricultural Products', ['Basmati & Non-Basmati Rice', 'Wheat & Food Grains', 'Pulses & Lentils', 'Turmeric & Chilli', 'Cardamom & Other Spices', 'Dried Fruits & Nuts', 'Dehydrated Vegetables']],
+    fashion: ['Apparel & Textile Products', ["Men's Formal & Casual Wear", "Women's Apparel", 'T-Shirts & Casual Clothing', 'Traditional Indian Garments', 'Cotton & Blended Fabrics', 'Bedsheets & Home Textiles', 'Towels & Bath Linen']]
   };
   const dialog = root.querySelector('dialog');
   root.querySelectorAll('[data-product]').forEach(button => button.addEventListener('click', () => {
-    const [title, description] = descriptions[button.dataset.product];
+    const [title, products] = descriptions[button.dataset.product];
     dialog.querySelector('h3').textContent = title;
-    dialog.querySelector('p').textContent = description;
+    dialog.querySelector('.ark-product-list').replaceChildren(...products.map(product => {
+      const item = document.createElement('li');
+      item.textContent = product;
+      return item;
+    }));
     root.querySelector('[name="product"]').value = title;
     dialog.showModal();
   }));

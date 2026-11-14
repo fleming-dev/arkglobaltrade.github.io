@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const base = __dirname;
 const products = [
- ['pharmaceuticals','Pharmaceuticals & Supplements'], ['herbal','Herbal & Ayurvedic Products'], ['beauty','Perfume Oils & Beauty Products'], ['food','Food & Agricultural Products'], ['fashion','Fashion & Clothing']
+ ['pharmaceuticals','Pharmaceuticals & Supplements'], ['herbal','Herbal & Ayurvedic Products'], ['beauty','Perfume Oils & Beauty Products'], ['food','Food & Agricultural Products'], ['fashion','Apparel & Textile Products']
 ];
 const services = [
  ['Import & Export','End-to-end international import and export solutions.'],
@@ -34,7 +34,7 @@ const body = `<div id="ark-global">
   </div></div></section>
  </main>
  <footer><div class="ark-wrap"><div class="ark-benefits"><div><strong>Global Sourcing</strong><small>From verified manufacturers</small></div><div><strong>Quality Assurance</strong><small>Global standards &amp; compliance</small></div><div><strong>Reliable Partnership</strong><small>Long-term business relationships</small></div><div><strong>Dedicated Support</strong><small>End-to-end trade assistance</small></div></div><p class="ark-tagline">— &nbsp; Connecting Nations through trade. &nbsp; —</p></div></footer>
- <dialog aria-labelledby="ark-dialog-title"><button class="ark-close" type="button" aria-label="Close product details">×</button><h3 id="ark-dialog-title"></h3><p></p><a class="ark-button" href="#ark-contact">Enquire About This Product →</a></dialog>
+ <dialog aria-labelledby="ark-dialog-title"><button class="ark-close" type="button" aria-label="Close product details">×</button><p class="ark-eyebrow">ARK GLOBAL – Our Product Range</p><h3 id="ark-dialog-title"></h3><ol class="ark-product-list"></ol><p>And More...</p><h4>Product Availability</h4><p>Our product range includes a diverse selection of products sourced through carefully selected manufacturers and suppliers. Product availability, specifications and minimum order quantities are subject to confirmation.</p><p>We are committed to delivering quality products through reliable sourcing and trusted global partnerships.</p><p class="ark-tagline">Quality in Every Source. Trust in Every Shipment.</p><a class="ark-button" href="#ark-contact">Enquire About This Product →</a></dialog>
 </div>`;
 const css=fs.readFileSync(path.join(base,'styles.css'),'utf8');
 const js=fs.readFileSync(path.join(base,'script.js'),'utf8');

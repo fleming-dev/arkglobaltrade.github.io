@@ -16,7 +16,7 @@ All component styling is scoped to `#ark-global`, except optional smooth scrolli
 
 The form validates required entries and prepares a `mailto:` enquiry addressed to `info@arkglobaltrading.com`. The visitor must send it from their email application. It does not store enquiries, submit to a server, or claim delivery. For automatic email delivery, replace it with a configured Squarespace Form Block or connect a form endpoint. Long messages may exceed some email clients' URL limits; direct email and WhatsApp links are also supplied.
 
-Contact details and business copy were transcribed from the reference images. Verify them before publishing. Product popup text asks for sourcing requirements without promising availability. The supplied raster artwork was cropped from the screenshots, so it retains their resolution and background. Replace it with original high-resolution assets for the sharpest final result.
+Contact details and business copy were transcribed from the reference images. Verify them before publishing. Each product popup lists the product range, availability terms and closing tagline. The supplied raster artwork was cropped from the screenshots, so it retains their resolution and background. Replace it with original high-resolution assets for the sharpest final result.
 
 ## Files
 
