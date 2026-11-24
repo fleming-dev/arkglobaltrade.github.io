@@ -102,15 +102,50 @@
 
 #ark-global .ark-hero{
   position:relative;
+  isolation:isolate;
+  overflow:hidden;
   min-height:540px;
   display:flex;
   align-items:center;
   padding:58px 0 45px;
   background-color:var(--navy);
-  background-image:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%),url('assets/hero-hd.jpg');
-  background-position:center,right center;
-  background-size:cover;
-  background-repeat:no-repeat;
+}
+#ark-global .ark-hero::before,
+#ark-global .ark-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+#ark-global .ark-hero::before{
+  z-index:-2;
+  background:url('assets/hero-hd.jpg') right center / cover no-repeat;
+}
+#ark-global .ark-hero-video{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:right center;
+  pointer-events:none;
+}
+#ark-global .ark-hero-video-toggle{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  border:1px solid #ffffff80;
+  border-radius:6px;
+  padding:4px 10px;
+  background:#051834cc;
+  color:#fff;
+  font-size:12px;
+  cursor:pointer;
+}
+#ark-global .ark-hero::after{
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%);
 }
 #ark-global .ark-hero-grid{display:block}
 #ark-global .ark-hero-grid>div{max-width:650px}
@@ -324,7 +359,9 @@
   #ark-global nav a:after{display:none}
   #ark-global nav a:hover,#ark-global nav a[aria-current]{background:#f5f7fa;color:var(--navy)}
   #ark-global section{padding:68px 0}
-  #ark-global .ark-hero{min-height:560px;padding:68px 0 42px;background-position:center,72% center}
+  #ark-global .ark-hero{min-height:560px;padding:68px 0 42px}
+  #ark-global .ark-hero::before{background-position:72% center}
+  #ark-global .ark-hero-video{object-position:72% center}
   #ark-global .ark-hero-grid>div{max-width:none}
   #ark-global h1{font-size:46px}
   #ark-global h2{font-size:38px}
@@ -355,6 +392,10 @@
   #ark-global .ark-card{transition:transform .2s ease,box-shadow .2s ease}
   #ark-global .ark-card:hover{transform:translateY(-5px);box-shadow:0 16px 35px rgba(16,36,62,.11)}
 }
+@media(prefers-reduced-motion:reduce){
+  #ark-global .ark-hero-video,
+  #ark-global .ark-hero-video-toggle{display:none}
+}
 
 </style>
 <div id="ark-global">
@@ -365,7 +406,10 @@
   <a class="ark-button" href="#ark-contact">Get a Quote <span aria-hidden="true">›</span></a>
  </header>
  <main>
-  <section id="ark-home" class="ark-hero"><div class="ark-wrap">
+  <section id="ark-home" class="ark-hero">
+   <video class="ark-hero-video" muted playsinline loop preload="none" data-src="assets/hero-background.mp4" aria-hidden="true"></video>
+   <button class="ark-hero-video-toggle" type="button" hidden>Pause background video</button>
+   <div class="ark-wrap">
    <div class="ark-hero-grid"><div><p class="ark-eyebrow">Connecting nations through trade</p><h1>Global Import &amp;<br><span>Export Solutions</span></h1><p class="ark-subtitle">Connecting quality products with businesses worldwide</p><a class="ark-button" href="#ark-products">Explore Our Products <span aria-hidden="true">→</span></a></div></div>
    <div class="ark-quantity"><strong>Flexible Import &amp; Export Quantities</strong><span>From <strong>2 oz (approx. 57 g)</strong> to bulk orders<br><small>Tailored to your requirements. Availability varies by product.</small></span></div>
   </div></section>
@@ -397,6 +441,34 @@
   const root = document.getElementById('ark-global');
   if (!root || root.dataset.ready) return;
   root.dataset.ready = 'true';
+  const heroVideo = root.querySelector('.ark-hero-video');
+  const heroVideoToggle = root.querySelector('.ark-hero-video-toggle');
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const playHeroVideo = () => {
+    if (motionPreference.matches) return;
+    if (!heroVideo.hasAttribute('src')) heroVideo.src = heroVideo.dataset.src;
+    heroVideo.play().catch(() => {});
+  };
+  heroVideo.addEventListener('playing', () => {
+    heroVideoToggle.hidden = false;
+    heroVideoToggle.textContent = 'Pause background video';
+  });
+  heroVideo.addEventListener('pause', () => {
+    heroVideoToggle.textContent = 'Play background video';
+  });
+  heroVideo.addEventListener('error', () => {
+    heroVideo.hidden = true;
+    heroVideoToggle.hidden = true;
+  });
+  heroVideoToggle.addEventListener('click', () => {
+    if (heroVideo.paused) playHeroVideo();
+    else heroVideo.pause();
+  });
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) heroVideo.pause();
+    else if (!heroVideo.hasAttribute('src')) playHeroVideo();
+  });
+  playHeroVideo();
   const menu = root.querySelector('.ark-menu');
   const nav = root.querySelector('nav');
   menu.addEventListener('click', () => {

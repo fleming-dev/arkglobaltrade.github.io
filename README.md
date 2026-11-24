@@ -4,8 +4,8 @@ Open `index.html` in a browser for a standalone preview. It loads `styles.css`, 
 
 ## Insert into Squarespace
 
-1. Upload the images referenced in the embed from `assets` to your Squarespace site and copy their public image URLs.
-2. Open `squarespace-embed.html` in a text editor. Replace every `assets/filename` image reference, including the hero background in the CSS, with the corresponding uploaded image URL. Local computer paths will not work on the published site.
+1. Upload the images and `hero-background.mp4` referenced in the embed from `assets` to your Squarespace site and copy their public file URLs.
+2. Open `squarespace-embed.html` in a text editor. Replace every `assets/filename` media reference with the corresponding public file URL, including the hero video’s `data-src` and the still background in the CSS. Local computer paths will not work on the published site.
 3. Add a Code Block to a blank page and paste the entire updated snippet as HTML, with display-source mode disabled. It contains all markup, CSS and vanilla JavaScript.
 4. Use a full-width page section and reduce the surrounding block spacing. If your site already has a header, you can remove the `<header>...</header>` inside this snippet to avoid duplicate navigation.
 5. Preview the saved page outside the editor and check both desktop and mobile layouts. JavaScript execution depends on your Squarespace plan and code settings. If inline scripts are unavailable in the block, put the contents of `script.js` in an allowed footer code-injection area, enclosed in `<script>` tags, after this page's markup.

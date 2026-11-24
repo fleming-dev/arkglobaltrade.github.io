@@ -2,6 +2,34 @@
   const root = document.getElementById('ark-global');
   if (!root || root.dataset.ready) return;
   root.dataset.ready = 'true';
+  const heroVideo = root.querySelector('.ark-hero-video');
+  const heroVideoToggle = root.querySelector('.ark-hero-video-toggle');
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const playHeroVideo = () => {
+    if (motionPreference.matches) return;
+    if (!heroVideo.hasAttribute('src')) heroVideo.src = heroVideo.dataset.src;
+    heroVideo.play().catch(() => {});
+  };
+  heroVideo.addEventListener('playing', () => {
+    heroVideoToggle.hidden = false;
+    heroVideoToggle.textContent = 'Pause background video';
+  });
+  heroVideo.addEventListener('pause', () => {
+    heroVideoToggle.textContent = 'Play background video';
+  });
+  heroVideo.addEventListener('error', () => {
+    heroVideo.hidden = true;
+    heroVideoToggle.hidden = true;
+  });
+  heroVideoToggle.addEventListener('click', () => {
+    if (heroVideo.paused) playHeroVideo();
+    else heroVideo.pause();
+  });
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) heroVideo.pause();
+    else if (!heroVideo.hasAttribute('src')) playHeroVideo();
+  });
+  playHeroVideo();
   const menu = root.querySelector('.ark-menu');
   const nav = root.querySelector('nav');
   menu.addEventListener('click', () => {

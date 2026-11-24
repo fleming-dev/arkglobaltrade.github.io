@@ -100,15 +100,50 @@
 
 #ark-global .ark-hero{
   position:relative;
+  isolation:isolate;
+  overflow:hidden;
   min-height:540px;
   display:flex;
   align-items:center;
   padding:58px 0 45px;
   background-color:var(--navy);
-  background-image:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%),url('assets/hero-hd.jpg');
-  background-position:center,right center;
-  background-size:cover;
-  background-repeat:no-repeat;
+}
+#ark-global .ark-hero::before,
+#ark-global .ark-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+#ark-global .ark-hero::before{
+  z-index:-2;
+  background:url('assets/hero-hd.jpg') right center / cover no-repeat;
+}
+#ark-global .ark-hero-video{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:right center;
+  pointer-events:none;
+}
+#ark-global .ark-hero-video-toggle{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  border:1px solid #ffffff80;
+  border-radius:6px;
+  padding:4px 10px;
+  background:#051834cc;
+  color:#fff;
+  font-size:12px;
+  cursor:pointer;
+}
+#ark-global .ark-hero::after{
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%);
 }
 #ark-global .ark-hero-grid{display:block}
 #ark-global .ark-hero-grid>div{max-width:650px}
@@ -322,7 +357,9 @@
   #ark-global nav a:after{display:none}
   #ark-global nav a:hover,#ark-global nav a[aria-current]{background:#f5f7fa;color:var(--navy)}
   #ark-global section{padding:68px 0}
-  #ark-global .ark-hero{min-height:560px;padding:68px 0 42px;background-position:center,72% center}
+  #ark-global .ark-hero{min-height:560px;padding:68px 0 42px}
+  #ark-global .ark-hero::before{background-position:72% center}
+  #ark-global .ark-hero-video{object-position:72% center}
   #ark-global .ark-hero-grid>div{max-width:none}
   #ark-global h1{font-size:46px}
   #ark-global h2{font-size:38px}
@@ -352,4 +389,8 @@
   html{scroll-behavior:smooth}
   #ark-global .ark-card{transition:transform .2s ease,box-shadow .2s ease}
   #ark-global .ark-card:hover{transform:translateY(-5px);box-shadow:0 16px 35px rgba(16,36,62,.11)}
+}
+@media(prefers-reduced-motion:reduce){
+  #ark-global .ark-hero-video,
+  #ark-global .ark-hero-video-toggle{display:none}
 }
