@@ -105,7 +105,7 @@
   align-items:center;
   padding:58px 0 45px;
   background-color:var(--navy);
-  background-image:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%),url('assets/hero.jpg');
+  background-image:linear-gradient(90deg,rgba(5,24,52,.88) 0%,rgba(5,24,52,.62) 43%,rgba(5,24,52,.08) 100%),url('assets/hero-hd.jpg');
   background-position:center,right center;
   background-size:cover;
   background-repeat:no-repeat;
@@ -116,7 +116,6 @@
 #ark-global .ark-hero h1 span{color:var(--gold-light)}
 #ark-global .ark-hero .ark-eyebrow{color:var(--gold-light)}
 #ark-global .ark-hero .ark-subtitle{color:#edf3f8;font-size:22px;font-style:normal}
-#ark-global .ark-hero-image{display:none}
 #ark-global .ark-hero .ark-button{margin-top:12px;padding:14px 24px}
 #ark-global .ark-quantity{
   margin-top:54px;
