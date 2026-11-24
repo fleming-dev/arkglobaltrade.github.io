@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const base = __dirname;
 const products = [
- ['pharmaceuticals','Pharmaceuticals & Supplements'], ['herbal','Herbal & Ayurvedic Products'], ['beauty','Perfume Oils & Beauty Products'], ['food','Food & Agricultural Products'], ['fashion','Apparel & Textile Products']
+ ['pharmaceuticals','Pharmaceuticals & Supplements'], ['herbal','Herbal & Ayurvedic Products'], ['beauty','Perfume Oils & Beauty Products'], ['food','Food & Agricultural Products'], ['fashion','Fashion & Jewelry']
 ];
 const services = [
  ['Import & Export','End-to-end international import and export solutions.'],
@@ -33,11 +33,23 @@ const body = `<div id="ark-global">
    <form><h3>Send Us an Enquiry</h3><div class="ark-fields"><label>Full Name *<input name="name" autocomplete="name" required maxlength="120"></label><label>Company Name<input name="company" autocomplete="organization" maxlength="150"></label><label>Email Address *<input name="email" type="email" autocomplete="email" required maxlength="200"></label><label>Country *<input name="country" autocomplete="country-name" required maxlength="100"></label><label>Phone / WhatsApp Number *<input name="phone" type="tel" autocomplete="tel" required maxlength="50"></label><label>Product Interested In<select name="product" required><option value="">Select a product</option>${products.map(([,title])=>`<option>${title}</option>`).join('')}<option>Other / General Enquiry</option></select></label><label class="ark-wide">Message / Enquiry *<textarea name="message" required maxlength="1800" placeholder="Tell us about your product, quantity and destination."></textarea></label><div class="ark-wide"><button class="ark-button" type="submit">Prepare Email Enquiry <span aria-hidden="true">→</span></button><p class="ark-note">Opens your email application. Review and send your message there.</p><p class="ark-note" role="status" aria-live="polite"></p></div></div></form>
   </div></div></section>
  </main>
- <footer><div class="ark-wrap"><div class="ark-benefits"><div><strong>Global Sourcing</strong><small>From verified manufacturers</small></div><div><strong>Quality Assurance</strong><small>Global standards &amp; compliance</small></div><div><strong>Reliable Partnership</strong><small>Long-term business relationships</small></div><div><strong>Dedicated Support</strong><small>End-to-end trade assistance</small></div></div><p class="ark-tagline">— &nbsp; Connecting Nations through trade. &nbsp; —</p></div></footer>
- <dialog aria-labelledby="ark-dialog-title"><button class="ark-close" type="button" aria-label="Close product details">×</button><p class="ark-eyebrow">ARK GLOBAL – Our Product Range</p><h3 id="ark-dialog-title"></h3><ol class="ark-product-list"></ol><p>And More...</p><h4>Product Availability</h4><p>Our product range includes a diverse selection of products sourced through carefully selected manufacturers and suppliers. Product availability, specifications and minimum order quantities are subject to confirmation.</p><p>We are committed to delivering quality products through reliable sourcing and trusted global partnerships.</p><p class="ark-tagline">Quality in Every Source. Trust in Every Shipment.</p><a class="ark-button" href="#ark-contact">Enquire About This Product →</a></dialog>
+ <footer><div class="ark-wrap"><div class="ark-benefits"><div><strong>Global Sourcing</strong><small>From verified manufacturers</small></div><div><strong>Quality Assurance</strong><small>Global standards &amp; compliance</small></div><div><strong>Reliable Partnership</strong><small>Long-term business relationships</small></div><div><strong>Dedicated Support</strong><small>End-to-end trade assistance</small></div></div><p class="ark-tagline">— &nbsp; Connecting Nations through Trade. &nbsp; —</p><p class="ark-copyright">&copy; ARK GLOBAL</p></div></footer>
+ <dialog aria-labelledby="ark-dialog-title"><button class="ark-close" type="button" aria-label="Close product details">×</button><p class="ark-eyebrow">ARK GLOBAL – Our Product Range</p><h3 id="ark-dialog-title"></h3><ol class="ark-product-list"></ol>
+  <div class="ark-fashion-details" hidden>
+   <h4>Fashion</h4>
+   <p>All kinds of traditional Indian attire for men, women, and children.</p>
+   <h4>Jewelry</h4>
+   <ul>
+    <li>Oxidised silver jewelry</li>
+    <li>Handmade gemstone jewelry</li>
+    <li>Brass and gold-plated jewelry</li>
+    <li>925 sterling silver jewelry</li>
+    <li>Kundan and Meenakari jewellery (Traditional Indian Bridal and occasion jewelry)</li>
+   </ul>
+  </div><p>And More...</p><h4>Product Availability</h4><p>Our product range includes a diverse selection of products sourced through carefully selected manufacturers and suppliers. Product availability, specifications and minimum order quantities are subject to confirmation.</p><p>We are committed to delivering quality products through reliable sourcing and trusted global partnerships.</p><p class="ark-tagline">Quality in Every Source. Trust in Every Shipment.</p><a class="ark-button" href="#ark-contact">Enquire About This Product →</a></dialog>
 </div>`;
 const css=fs.readFileSync(path.join(base,'styles.css'),'utf8');
 const js=fs.readFileSync(path.join(base,'script.js'),'utf8');
-fs.writeFileSync(path.join(base,'index.html'),`<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARK GLOBAL | Import & Export Solutions</title><meta name="description" content="ARK GLOBAL connects businesses through international import, export, product sourcing and logistics coordination."><link rel="stylesheet" href="styles.css"></head><body style="margin:0">${body}<script src="script.js" defer></script></body></html>`);
+fs.writeFileSync(path.join(base,'index.html'),`<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARK GLOBAL | Import & Export Solutions</title><meta name="description" content="ARK GLOBAL connects businesses through international import, export, product sourcing and logistics coordination."><link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png"><link rel="stylesheet" href="styles.css"></head><body style="margin:0">${body}<script src="script.js" defer></script></body></html>`);
 fs.writeFileSync(path.join(base,'squarespace-embed.html'),`<!-- Upload the assets to Squarespace and replace each assets/ image path with its public URL before pasting. -->\n<style>\n${css}\n</style>\n${body}\n<script>\n${js}\n</script>`);
 console.log('Created standalone page and Squarespace embed.');

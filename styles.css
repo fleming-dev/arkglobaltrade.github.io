@@ -4,3 +4,5 @@
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}#ark-global .ark-card{transition:transform .2s}#ark-global .ark-card:hover{transform:translateY(-4px)}}
 
 #ark-global .ark-product-list{padding-left:24px;margin:20px 0 12px}#ark-global .ark-product-list li{padding-left:4px;margin:5px 0}#ark-global dialog h4{margin:24px 0 10px;font-size:17px}#ark-global dialog .ark-tagline{line-height:1.5}
+
+#ark-global footer .ark-copyright{text-align:center;font-size:13px;color:#526078;margin:0 0 10px}

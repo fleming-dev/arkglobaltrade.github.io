@@ -4,11 +4,13 @@ Open `index.html` in a browser for a standalone preview. It loads `styles.css`, 
 
 ## Insert into Squarespace
 
-1. Upload the ten images in `assets` to your Squarespace site and copy their public image URLs.
+1. Upload the images referenced in the embed from `assets` to your Squarespace site and copy their public image URLs.
 2. Open `squarespace-embed.html` in a text editor. Replace every `assets/filename` image reference with the corresponding uploaded image URL. Local computer paths will not work on the published site.
 3. Add a Code Block to a blank page and paste the entire updated snippet as HTML, with display-source mode disabled. It contains all markup, CSS and vanilla JavaScript.
 4. Use a full-width page section and reduce the surrounding block spacing. If your site already has a header, you can remove the `<header>...</header>` inside this snippet to avoid duplicate navigation.
 5. Preview the saved page outside the editor and check both desktop and mobile layouts. JavaScript execution depends on your Squarespace plan and code settings. If inline scripts are unavailable in the block, put the contents of `script.js` in an allowed footer code-injection area, enclosed in `<script>` tags, after this page's markup.
+
+For the published Squarespace site, upload `assets/favicon.png` in the site-wide favicon settings. The standalone preview loads it directly.
 
 All component styling is scoped to `#ark-global`, except optional smooth scrolling on the document. IDs have the `ark-` prefix. Insert the component once per page.
 

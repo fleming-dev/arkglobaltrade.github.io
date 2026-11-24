@@ -19,13 +19,17 @@
     herbal: ['Herbal & Ayurvedic Products', ['Ashwagandha', 'Shilajit', 'Moringa', 'Holy Basil (Tulsi)', 'Neem', 'Amla', 'Brahmi']],
     beauty: ['Perfume Oils & Beauty Products', ['Premium Perfume Oils', 'Concentrated Fragrance Oils', 'Essential Oils', 'Natural Aromatic Oils', 'Herbal Hair Oils', 'Natural Cosmetic Oils', 'Botanical Skincare Ingredients']],
     food: ['Food & Agricultural Products', ['Basmati & Non-Basmati Rice', 'Wheat & Food Grains', 'Pulses & Lentils', 'Turmeric & Chilli', 'Cardamom & Other Spices', 'Dried Fruits & Nuts', 'Dehydrated Vegetables']],
-    fashion: ['Apparel & Textile Products', ["Men's Formal & Casual Wear", "Women's Apparel", 'T-Shirts & Casual Clothing', 'Traditional Indian Garments', 'Cotton & Blended Fabrics', 'Bedsheets & Home Textiles', 'Towels & Bath Linen']]
+    fashion: ['Fashion & Jewelry', ["Men's Formal & Casual Wear", "Women's Apparel", 'T-Shirts & Casual Clothing', 'Traditional Indian Garments', 'Cotton & Blended Fabrics', 'Bedsheets & Home Textiles', 'Towels & Bath Linen']]
   };
   const dialog = root.querySelector('dialog');
+  const productList = dialog.querySelector('.ark-product-list');
+  const fashionDetails = dialog.querySelector('.ark-fashion-details');
   root.querySelectorAll('[data-product]').forEach(button => button.addEventListener('click', () => {
     const [title, products] = descriptions[button.dataset.product];
     dialog.querySelector('h3').textContent = title;
-    dialog.querySelector('.ark-product-list').replaceChildren(...products.map(product => {
+    productList.hidden = products.length === 0;
+    fashionDetails.hidden = button.dataset.product !== 'fashion';
+    productList.replaceChildren(...products.map(product => {
       const item = document.createElement('li');
       item.textContent = product;
       return item;
